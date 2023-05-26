@@ -56,7 +56,6 @@ FTPRINTF_FILES	=	ft_c_format.c ft_i_format.c ft_printf_itoa.c ft_s_format.c \
 
 
 
-#SRCS 		= 	$(addprefix $(LIBFT_DIR), $(LIBFT_FILES))		
 OBJS		=	$(addprefix $(OBJS_DIR), $(LIBFT_FILES:.c=.o)) \
 				$(addprefix $(OBJS_DIR),$(FTPRINTF_FILES:.c=.o)) \
 				$(addprefix $(OBJS_DIR),$(NEXT_LINE_FILES:.c=.o))
@@ -68,9 +67,7 @@ DEPS		=	$(addprefix $(DEPS_DIR), $(LIBFT_FILES:.c=.d)) \
 ###
 
 
-all:		$(NAME) 
-
-
+all:	$(NAME) 
 
 $(OBJS_DIR)%.o: $(LIBFT_DIR)%.c | $(OBJS_DIR) $(DEPS_DIR)
 			@echo "$(CYAN)Compiling $< $(DEF_COLOR)"
@@ -88,12 +85,10 @@ $(OBJS_DIR)%.o: $(NEXT_LINE_DIR)%.c | $(OBJS_DIR) $(DEPS_DIR)
 			@$(CC) $(CFLAGS) $(INCLUDES) -MMD -MP -c $< -o $@
 			@mv $(OBJS_DIR)$(notdir $(basename $<)).d $(DEPS_DIR)
 			 
-
 $(NAME):	$(OBJS)
 			@$(AR) $(NAME) $(OBJS)
 			@ranlib $(NAME)
 			@echo "$(GREEN)Libft compiled! $(DEF_COLOR)"
-
 
 $(OBJS_DIR):
 		@echo "$(GREEN)Creating Obj Dir $(DEF_COLOR)"
@@ -101,6 +96,9 @@ $(OBJS_DIR):
 $(DEPS_DIR):
 		@echo "$(GREEN)Creating Deps Dir $(DEF_COLOR)"
 		@mkdir -p $(DEPS_DIR)
+
+
+-include $(DEPS)
 
 clean:
 		@$(RM) -rf $(OBJS_DIR) $(DEPS_DIR)
@@ -114,5 +112,4 @@ re:		fclean all
 		@echo "$(GREEN)Cleaned and rebuilt everything!$(DEF_COLOR)"
 
 
--include $(DEPS)
 .PHONY:		all clean fclean re
