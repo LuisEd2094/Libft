@@ -8,6 +8,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 
+extern  int BUFFER_SIZE;
 void	*ft_free_strs_line(char **str, char **str2);
 char	*get_next_line(int fd);
 char	*read_file(int fd, char *buffer, int bytes_read);

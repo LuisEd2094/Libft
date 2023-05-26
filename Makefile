@@ -16,7 +16,7 @@ LIBFT_DIR		=	src/
 PRINT_DIR		=	ftprintf/
 NEXT_LINE_DIR	=	get_next_line/
 OBJS_DIR		=	obj/
-DEPS_DIR		=	obj/deps
+DEPS_DIR		=	deps/
 CFLAGS			=	-Wall -Werror -Wextra
 RM				=	rm -f
 AR				=	ar rcs
@@ -75,13 +75,13 @@ all:		$(NAME)
 
 $(OBJS_DIR)%.o: $(LIBFT_DIR)%.c | $(OBJS_DIR) $(DEPS_DIR)
 #			@echo "$(CYAN)Compiling $< $(DEF_COLOR)"
-			$(CC) $(CFLAGS) $(INCLUDES) -M -MMD -MP -c $< -o $@
+			$(CC) $(CFLAGS) $(INCLUDES) -MMD -MP -c $< -o $@
 
-$(OBJS_DIR)%.o: $(PRINT_DIR)%.c
-			$(CC) $(CFLAGS) $(INCLUDES) -M -MMD -MP -c $< -o $@
+$(OBJS_DIR)%.o: $(PRINT_DIR)%.c | $(OBJS_DIR) $(DEPS_DIR)
+			$(CC) $(CFLAGS) $(INCLUDES) -MMD -MP -c $< -o $@
 
-$(OBJS_DIR)%.o: $(NEXT_LINE_DIR)%.c
-			$(CC) $(CFLAGS) $(INCLUDES) -M -MMD -MP -c $< -o $@
+$(OBJS_DIR)%.o: $(NEXT_LINE_DIR)%.c | $(OBJS_DIR) $(DEPS_DIR)
+			$(CC) $(CFLAGS) $(INCLUDES) -MMD -MP -c $< -o $@
 			 
 
 $(NAME):	$(OBJS)
@@ -107,7 +107,4 @@ fclean:	clean
 re:		fclean all
 #		@echo "$(GREEN)Cleaned and rebuilt everything!$(DEF_COLOR)"
 
-norm:
-		@norminette $(SRCS) $(INCLUDES)
-
-.PHONY:		all clean fclean re norm
+.PHONY:		all clean fclean re
