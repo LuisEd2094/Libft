@@ -67,44 +67,52 @@ DEPS		=	$(addprefix $(DEPS_DIR), $(LIBFT_FILES:.c=.d)) \
 
 ###
 
--include 	$(DEPS)
 
 all:		$(NAME) 
 
 
 
 $(OBJS_DIR)%.o: $(LIBFT_DIR)%.c | $(OBJS_DIR) $(DEPS_DIR)
-#			@echo "$(CYAN)Compiling $< $(DEF_COLOR)"
-			$(CC) $(CFLAGS) $(INCLUDES) -MMD -MP -c $< -o $@
+			@echo "$(CYAN)Compiling $< $(DEF_COLOR)"
+			@$(CC) $(CFLAGS) $(INCLUDES) -MMD -MP -c $< -o $@
+			@mv $(OBJS_DIR)$(notdir $(basename $<)).d $(DEPS_DIR)
+
 
 $(OBJS_DIR)%.o: $(PRINT_DIR)%.c | $(OBJS_DIR) $(DEPS_DIR)
-			$(CC) $(CFLAGS) $(INCLUDES) -MMD -MP -c $< -o $@
+			@echo "$(CYAN)Compiling $< $(DEF_COLOR)"
+			@$(CC) $(CFLAGS) $(INCLUDES) -MMD -MP -c $< -o $@
+			@mv $(OBJS_DIR)$(notdir $(basename $<)).d $(DEPS_DIR)
 
 $(OBJS_DIR)%.o: $(NEXT_LINE_DIR)%.c | $(OBJS_DIR) $(DEPS_DIR)
-			$(CC) $(CFLAGS) $(INCLUDES) -MMD -MP -c $< -o $@
+			@echo "$(CYAN)Compiling $< $(DEF_COLOR)"
+			@$(CC) $(CFLAGS) $(INCLUDES) -MMD -MP -c $< -o $@
+			@mv $(OBJS_DIR)$(notdir $(basename $<)).d $(DEPS_DIR)
 			 
 
 $(NAME):	$(OBJS)
-			$(AR) $(NAME) $(OBJS)
-			ranlib $(NAME)
-#			@echo "$(GREEN)Libft compiled! $(DEF_COLOR)"
+			@$(AR) $(NAME) $(OBJS)
+			@ranlib $(NAME)
+			@echo "$(GREEN)Libft compiled! $(DEF_COLOR)"
 
 
 $(OBJS_DIR):
-		mkdir -p $(OBJS_DIR)
+		@echo "$(GREEN)Creating Obj Dir $(DEF_COLOR)"
+		@mkdir -p $(OBJS_DIR)
 $(DEPS_DIR):
-		mkdir -p $(DEPS_DIR)
+		@echo "$(GREEN)Creating Deps Dir $(DEF_COLOR)"
+		@mkdir -p $(DEPS_DIR)
 
 clean:
-		@$(RM) -rf $(OBJS_DIR)
 		@$(RM) -rf $(OBJS_DIR) $(DEPS_DIR)
-#		@echo "$(GREEN)Libft objects LIBFT_FILES		leaned!$(DEF_COLOR)"
+		@echo "$(GREEN)Libft objects and Deps cleaned!$(DEF_COLOR)"
 
 fclean:	clean
 		@$(RM) -f $(NAME)
-#		@echo "$(GREEN)Libft executable LIBFT_FILES		leaned!$(DEF_COLOR)"
+		@echo "$(GREEN)Libft executable cleaned!$(DEF_COLOR)"
 
 re:		fclean all
-#		@echo "$(GREEN)Cleaned and rebuilt everything!$(DEF_COLOR)"
+		@echo "$(GREEN)Cleaned and rebuilt everything!$(DEF_COLOR)"
 
+
+-include $(DEPS)
 .PHONY:		all clean fclean re
