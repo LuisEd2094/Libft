@@ -11,10 +11,11 @@
 # **************************************************************************** #
 
 NAME		=	libft.a
-INCLUDES	=	../include
+INCLUDES	=	-I ./include
 SRCS_DIR	=	src/
 OBJS_DIR	=	obj/
-CFLAGS		=	-Wall -Werror -Wextra -I
+DEPS_DIR	=	obj/deps
+CFLAGS		=	-Wall -Werror -Wextra
 RM			=	rm -f
 AR			=	ar rcs
 
@@ -47,30 +48,37 @@ FILES		=	ft_atoi.c ft_isalpha.c ft_itoa.c ft_lstdelone.c ft_lstnew.c \
 
 
 
-SRCS 		= 	$(addprefix $(SRCS_DIR),$(FILES))
-OBJS		=	$(addprefix $(OBJS_DIR),$(FILES:.c=.o))
+SRCS 		= 	$(addprefix $(SRCS_DIR), $(FILES))
+OBJS		=	$(addprefix $(OBJS_DIR), $(FILES:.c=.o))
+DEPS		=	$(addprefix $(DEPS_DIR), $(FILES:.c=.d))
 
 ###
 
-OBJSF		= .cache_exists
+-include 	$(DEPS)
 
-all:		$(NAME)
+all:		$(NAME) 
+
+
+
+$(OBJS_DIR)%.o: $(SRCS_DIR)%.c | $(OBJS_DIR) $(DEPS_DIR)
+#			@echo "$(CYAN)Compiling $< $(DEF_COLOR)"
+			$(CC) $(CFLAGS) $(INCLUDES) -M -MMD -MP -c $< -o $@
+			 
 
 $(NAME):	$(OBJS)
 			$(AR) $(NAME) $(OBJS)
 			ranlib $(NAME)
 #			@echo "$(GREEN)Libft compiled! $(DEF_COLOR)"
 
-$(OBJS_DIR)%.o : $(SRCS_DIR)%.c includes/libft.h | $(OBJSF)
-#			@echo "$(CYAN)Compiling $< $(DEF_COLOR)"
-			$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
-$(OBJSF):
-			@mkdir -p $(OBJS_DIR)
+$(OBJS_DIR):
+		mkdir -p $(OBJS_DIR)
+$(DEPS_DIR):
+		mkdir -p $(DEPS_DIR)
 
 clean:
 		@$(RM) -rf $(OBJS_DIR)
-		@$(RM) -r $(OBJSF)
+		@$(RM) -rf $(OBJS_DIR) $(DEPS_DIR)
 #		@echo "$(GREEN)Libft objects files cleaned!$(DEF_COLOR)"
 
 fclean:	clean
