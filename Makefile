@@ -106,7 +106,7 @@ clean:
 
 fclean:	clean
 		@$(RM) -f $(NAME)
-		@echo "$(GREEN)Libft executable cleaned!$(DEF_COLOR)"
+		@echo "$(GREEN)Libft library cleaned!$(DEF_COLOR)"
 
 re:		fclean all
 		@echo "$(GREEN)Cleaned and rebuilt everything!$(DEF_COLOR)"
