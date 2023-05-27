@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 NAME			=	libft.a
-INCLUDES		=	-I ./include
+INCLUDES		=	-I./includes
 LIBFT_DIR		=	src/
 PRINT_DIR		=	ftprintf/
 NEXT_LINE_DIR	=	get_next_line/
@@ -57,12 +57,12 @@ FTPRINTF_FILES	=	ft_c_format.c ft_i_format.c ft_printf_itoa.c ft_s_format.c \
 
 
 OBJS		=	$(addprefix $(OBJS_DIR), $(LIBFT_FILES:.c=.o)) \
-				$(addprefix $(OBJS_DIR),$(FTPRINTF_FILES:.c=.o)) \
-				$(addprefix $(OBJS_DIR),$(NEXT_LINE_FILES:.c=.o))
+				$(addprefix $(OBJS_DIR), $(FTPRINTF_FILES:.c=.o)) \
+				$(addprefix $(OBJS_DIR), $(NEXT_LINE_FILES:.c=.o))
 
 DEPS		=	$(addprefix $(DEPS_DIR), $(LIBFT_FILES:.c=.d)) \
-				$(addprefix $(DEPS_DIR),$(FTPRINTF_FILES:.c=.d)) \
-				$(addprefix $(DEPS_DIR),$(NEXT_LINE_FILES:.c=.d))
+				$(addprefix $(DEPS_DIR), $(FTPRINTF_FILES:.c=.d)) \
+				$(addprefix $(DEPS_DIR), $(NEXT_LINE_FILES:.c=.d))
 
 ###
 
