@@ -102,7 +102,7 @@ char	*get_next_line(int fd, int b_size)
 	if (!buffer[fd])
 		return (ft_free_strs_line(&buffer[fd], 0));
 	bytes_read = 1;
-	buffer[fd] = read_file(fd, buffer[fd], bytes_read);
+	buffer[fd] = read_file(fd, buffer[fd], bytes_read, b_size);
 	if (!buffer[fd])
 		return (NULL);
 	line = parse_line(buffer[fd]);
