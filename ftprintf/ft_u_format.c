@@ -6,7 +6,7 @@
 /*   By: lsoto-do <lsoto-do@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 14:08:24 by lsoto-do          #+#    #+#             */
-/*   Updated: 2023/05/10 16:54:27 by lsoto-do         ###   ########.fr       */
+/*   Updated: 2023/07/05 10:05:02 by lsoto-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static char	*add_prefix(char *uitoa, t_flags flg, int uitoa_len)
 			ft_free_strs(&uitoa, 0, 0);
 			return (NULL);
 		}
-	}	
+	}
 	new = ft_strjoin(zeros, uitoa);
 	if (zeros[0] == '0')
 		ft_free_strs(&zeros, 0, 0);

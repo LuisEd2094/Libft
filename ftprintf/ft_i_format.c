@@ -6,7 +6,7 @@
 /*   By: lsoto-do <lsoto-do@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 13:34:39 by lsoto-do          #+#    #+#             */
-/*   Updated: 2023/05/10 16:52:35 by lsoto-do         ###   ########.fr       */
+/*   Updated: 2023/07/05 10:04:06 by lsoto-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ char	*get_zeros(t_flags flg, int len)
 			new[i++] = '0';
 	}
 	return (new);
-}	
+}
 
 static char	*join_all(char *zeros, char *itoa, t_flags flg)
 {
@@ -84,7 +84,7 @@ static char	*add_prefix(char *itoa, t_flags flg, int itoa_len)
 
 	zeros = "";
 	if (check_help(flg, itoa_len, 1))
-	{	
+	{
 		if (check_help(flg, itoa_len, 2))
 			zeros = "";
 		else
@@ -96,7 +96,7 @@ static char	*add_prefix(char *itoa, t_flags flg, int itoa_len)
 				return (NULL);
 			}
 		}
-	}		
+	}
 	new = join_all(zeros, itoa, flg);
 	if (zeros[0] == '0')
 		ft_free_strs(&zeros, 0, 0);

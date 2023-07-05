@@ -6,7 +6,7 @@
 /*   By: lsoto-do <lsoto-do@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 16:16:03 by lsoto-do          #+#    #+#             */
-/*   Updated: 2023/05/10 16:52:41 by lsoto-do         ###   ########.fr       */
+/*   Updated: 2023/07/05 10:04:22 by lsoto-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,6 @@ int	p_format(const char *s, unsigned long arg)
 		hex = join_spaces(hex, spaces, flg);
 		if (!hex)
 			return (-1);
-	}	
+	}
 	return (put_str(hex));
 }

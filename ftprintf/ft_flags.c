@@ -6,7 +6,7 @@
 /*   By: lsoto-do <lsoto-do@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 16:15:50 by lsoto-do          #+#    #+#             */
-/*   Updated: 2023/05/10 16:52:21 by lsoto-do         ###   ########.fr       */
+/*   Updated: 2023/07/05 10:03:28 by lsoto-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	fg_space_plus(const char *s, char *f, char flg)
 		return (0);
 	marker = 0;
 	while (!is_in_set(s[i], f))
-	{	
+	{
 		if (s[i] == '+')
 			marker = 1;
 		if (s[i] == ' ' && marker != 1)

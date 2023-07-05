@@ -6,7 +6,7 @@
 /*   By: lsoto-do <lsoto-do@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 16:16:52 by lsoto-do          #+#    #+#             */
-/*   Updated: 2023/05/10 16:52:54 by lsoto-do         ###   ########.fr       */
+/*   Updated: 2023/07/05 10:04:40 by lsoto-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ char	*get_spaces(t_flags flg, int len)
 		return (NULL);
 	i = 0;
 	while (i < (flg.width - len))
-			new[i++] = ' ';
+		new[i++] = ' ';
 	return (new);
 }
 

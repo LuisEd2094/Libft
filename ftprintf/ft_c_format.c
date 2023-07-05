@@ -6,7 +6,7 @@
 /*   By: lsoto-do <lsoto-do@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 16:15:24 by lsoto-do          #+#    #+#             */
-/*   Updated: 2023/05/10 16:51:13 by lsoto-do         ###   ########.fr       */
+/*   Updated: 2023/07/05 10:02:58 by lsoto-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	c_left_space(t_flags flg, char arg)
 		if (put_char(' ') != 1)
 			return (-1);
 		c_printed++;
-	}		
+	}
 	if (put_char(arg) != 1)
 		return (-1);
 	c_printed++;
@@ -46,7 +46,7 @@ int	c_right_space(t_flags flg, char arg)
 		if (put_char(' ') != 1)
 			return (-1);
 		c_printed++;
-	}		
+	}
 	return (c_printed);
 }
 
