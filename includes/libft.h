@@ -71,5 +71,8 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 int		ft_strcmp(const char *s1, const char *s2);
 int		heck_if_int(char *str);
 int		ft_isspace(char chr);
+int		check_if_white_right_left(char *argv);
+void    remove_white_space(char *argv);
+
 
 #endif
