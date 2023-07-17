@@ -1,4 +1,4 @@
-int ft_iswhite(char chr)
+int ft_isspace(char chr)
 {
     if (chr== '\f' || chr== '\n' \
 		|| chr== '\r' || chr== '\t' \
