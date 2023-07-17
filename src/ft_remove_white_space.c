@@ -1,4 +1,5 @@
 #include "libft.h"
+
 void    remove_white_space(char *argv)
 {
     int i;
@@ -6,7 +7,6 @@ void    remove_white_space(char *argv)
     int len;
 
     i = 0;
-    len = ft_strlen(argv) - 1;
     if (ft_isspace(argv[i]))
     {
         while (ft_isspace(argv[i]))
@@ -17,6 +17,7 @@ void    remove_white_space(char *argv)
         while (argv[k])
             argv[k++] = '\0';
     }
+    len = ft_strlen(argv) - 1;
     if (ft_isspace(argv[len]))
     {
         while (ft_isspace(argv[len]))
