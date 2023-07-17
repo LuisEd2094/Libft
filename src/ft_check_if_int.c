@@ -43,7 +43,7 @@ int	get_sign(int *k, char *argv)
 	return (sign);
 }
 
-int	check_if_valid_num(char *str)
+int	check_if_int(char *str)
 {
 	int	i;
 	int	sign;
