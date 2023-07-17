@@ -1,3 +1,21 @@
+int	check_last_digit(int sign, char *argv, int i)
+{
+	if (argv[i + 1] != '\0')
+		return (0);
+	if (sign == -1)
+	{
+		if ('8' - argv[i] >= 0)
+			return (1);
+		return (0);
+	}
+	else
+	{	
+		if ('7' - argv[i] >= 0)
+			return (1);
+		return (0);
+	}
+}
+
 int	ft_isdigit(int c)
 {
 	if (c >= '0' && c <= '9')

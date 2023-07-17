@@ -46,7 +46,7 @@ LIBFT_FILES		=	ft_atoi.c ft_isalpha.c ft_itoa.c ft_lstdelone.c ft_lstnew.c \
 					ft_strdup.c ft_strlcpy.c ft_strnstr.c ft_tolower.c \
 					ft_isalnum.c ft_isprint.c ft_lstclear.c ft_lstmap.c \
 					ft_memcmp.c ft_putchar_fd.c ft_split.c ft_striteri.c ft_strlen.c\
-					ft_strrchr.c ft_toupper.c
+					ft_strrchr.c ft_toupper.c ft_check_if_int.c
 
 NEXT_LINE_FILES	=	get_next_line.c get_next_line_utils.c
 
