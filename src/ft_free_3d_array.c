@@ -1,30 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_get_sign.c                                      :+:      :+:    :+:   */
+/*   ft_free_3d_array.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lsoto-do <lsoto-do@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/13 12:12:22 by lsoto-do          #+#    #+#             */
-/*   Updated: 2023/10/13 12:12:35 by lsoto-do         ###   ########.fr       */
+/*   Created: 2023/10/26 16:09:04 by lsoto-do          #+#    #+#             */
+/*   Updated: 2023/10/26 16:09:05 by lsoto-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	get_sign(char *argv)
-{
-	int	sign;
-	int	i;
+#include <stdlib.h>
 
-	sign = 0;
+void	free_3d_array(char ***array)
+{
+	int	i;
+	int	j;
+
 	i = 0;
-	if ((argv[i] == '-' || argv[i] == '+'))
+	while (array[i])
 	{
-		if (argv[i] == '-' )
-			sign = -1;
-		else if (argv[i] == '+')
-			sign = 1;
+		j = 0;
+		while (array[i][j])
+		{
+			if (array[i][j])
+				free(array[i][j]);
+			j++;
+		}
+		free(array[i]);
+		i++;
 	}
-	else
-		sign = 0;
-	return (sign);
+	free(array);
 }

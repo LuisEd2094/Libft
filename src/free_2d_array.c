@@ -1,30 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_get_sign.c                                      :+:      :+:    :+:   */
+/*   free_2d_array.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lsoto-do <lsoto-do@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/13 12:12:22 by lsoto-do          #+#    #+#             */
-/*   Updated: 2023/10/13 12:12:35 by lsoto-do         ###   ########.fr       */
+/*   Created: 2023/10/13 12:11:05 by lsoto-do          #+#    #+#             */
+/*   Updated: 2023/10/13 12:11:37 by lsoto-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	get_sign(char *argv)
+#include <libft.h>
+
+void	*free_2d_array(char **array)
 {
-	int	sign;
 	int	i;
 
-	sign = 0;
 	i = 0;
-	if ((argv[i] == '-' || argv[i] == '+'))
+	while (array[i])
 	{
-		if (argv[i] == '-' )
-			sign = -1;
-		else if (argv[i] == '+')
-			sign = 1;
+		free(array[i]);
+		array[i++] = NULL;
 	}
-	else
-		sign = 0;
-	return (sign);
+	if (array)
+	{
+		free(array);
+		array = NULL;
+	}
+	return (NULL);
 }
