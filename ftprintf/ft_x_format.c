@@ -95,7 +95,7 @@ static char	*add_prefix(char *hex, t_flags flg, int hex_len)
 	return (new);
 }
 
-int	x_format(const char *s, unsigned int arg)
+int	x_format(const char *s, unsigned int arg, int fd)
 {
 	t_flags	flg;
 	char	*hex;
@@ -120,5 +120,5 @@ int	x_format(const char *s, unsigned int arg)
 		hex = add_spaces(hex, flg, (int)ft_strlen(hex));
 	if (!hex)
 		return (-1);
-	return (put_str(hex));
+	return (put_str(hex, fd));
 }

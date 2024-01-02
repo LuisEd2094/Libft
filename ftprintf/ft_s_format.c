@@ -13,7 +13,7 @@
 #include "../includes/ft_printf.h"
 #include "../includes/libft.h"
 
-int	s_space(char	*arg, t_flags flg, int len)
+int	s_space(char	*arg, t_flags flg, int len, int fd)
 {
 	char	*spaces;
 	char	*new;
@@ -29,7 +29,7 @@ int	s_space(char	*arg, t_flags flg, int len)
 	if (!new)
 		return (-1);
 	else
-		return (put_str(new));
+		return (put_str(new, fd));
 }
 
 char	*get_arg(char *arg, t_flags flg, int len)
@@ -54,7 +54,7 @@ char	*get_arg(char *arg, t_flags flg, int len)
 	return (new);
 }
 
-int	s_format(const char *s, char *arg)
+int	s_format(const char *s, char *arg, int fd)
 {
 	t_flags	flags;
 	char	*new_arg;
@@ -69,7 +69,7 @@ int	s_format(const char *s, char *arg)
 	if (!new_arg)
 		return (-1);
 	if (flags.width > (int)ft_strlen(new_arg))
-		return (s_space(new_arg, flags, (int)ft_strlen(new_arg)));
+		return (s_space(new_arg, flags, (int)ft_strlen(new_arg), fd));
 	else
-		return (put_str(new_arg));
+		return (put_str(new_arg, fd));
 }

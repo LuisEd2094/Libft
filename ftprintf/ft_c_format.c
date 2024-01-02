@@ -12,7 +12,7 @@
 
 #include "../includes/ft_printf.h"
 
-int	c_left_space(t_flags flg, char arg)
+int	c_left_space(t_flags flg, char arg, int fd)
 {
 	int		c_printed;
 	int		i;
@@ -21,44 +21,44 @@ int	c_left_space(t_flags flg, char arg)
 	c_printed = 0;
 	while (i++ < flg.width)
 	{
-		if (put_char(' ') != 1)
+		if (put_char(' ', fd) != 1)
 			return (-1);
 		c_printed++;
 	}
-	if (put_char(arg) != 1)
+	if (put_char(arg, fd) != 1)
 		return (-1);
 	c_printed++;
 	return (c_printed);
 }
 
-int	c_right_space(t_flags flg, char arg)
+int	c_right_space(t_flags flg, char arg, int fd)
 {
 	int		c_printed;
 	int		i;
 
 	i = 1;
 	c_printed = 0;
-	if (put_char(arg) != 1)
+	if (put_char(arg, fd) != 1)
 		return (-1);
 	c_printed++;
 	while (i++ < flg.width)
 	{
-		if (put_char(' ') != 1)
+		if (put_char(' ', fd) != 1)
 			return (-1);
 		c_printed++;
 	}
 	return (c_printed);
 }
 
-int	c_format(const char *s, char arg)
+int	c_format(const char *s, char arg, int fd)
 {
 	t_flags	flags;
 
 	flags = check_flags(s, "c%");
 	if (flags.dash)
-		return (c_right_space(flags, arg));
+		return (c_right_space(flags, arg, fd));
 	else if (flags.width > 0)
-		return (c_left_space(flags, arg));
+		return (c_left_space(flags, arg, fd));
 	else
-		return (put_char(arg));
+		return (put_char(arg, fd));
 }

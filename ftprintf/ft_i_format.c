@@ -106,7 +106,7 @@ static char	*add_prefix(char *itoa, t_flags flg, int itoa_len)
 	return (new);
 }
 
-int	i_format(const char *s, int arg)
+int	i_format(const char *s, int arg, int fd)
 {
 	char	*itoa;
 	t_flags	flg;
@@ -130,5 +130,5 @@ int	i_format(const char *s, int arg)
 		itoa = add_spaces(itoa, flg, (int)ft_strlen(itoa));
 	if (!itoa)
 		return (-1);
-	return (put_str(itoa));
+	return (put_str(itoa, fd));
 }

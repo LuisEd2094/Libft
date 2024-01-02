@@ -12,21 +12,21 @@
 
 #include "../includes/ft_printf.h"
 
-int	put_char(int c)
+int	put_char(int c, int fd)
 {
-	if (write (STDOUT_FILENO, &c, 1) != 1)
+	if (write (fd, &c, 1) != 1)
 		return (-1);
 	return (1);
 }
 
-int	put_str(char *s)
+int	put_str(char *s, int fd)
 {
 	int	i;
 
 	i = 0;
 	while (s[i])
 	{
-		if (put_char(s[i]) == -1)
+		if (put_char(s[i], fd) == -1)
 			return (ft_free_strs(&s, 0, 0));
 		i++;
 	}

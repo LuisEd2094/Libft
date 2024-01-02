@@ -67,7 +67,7 @@ char	*join_spaces(char *hex, char *spaces, t_flags flg)
 	return (new);
 }
 
-int	p_format(const char *s, unsigned long arg)
+int	p_format(const char *s, unsigned long arg, int fd)
 {
 	t_flags	flg;
 	char	*hex;
@@ -93,5 +93,5 @@ int	p_format(const char *s, unsigned long arg)
 		if (!hex)
 			return (-1);
 	}
-	return (put_str(hex));
+	return (put_str(hex, fd));
 }

@@ -33,22 +33,22 @@ char	ck_format(const char *source)
 	return (0);
 }
 
-int	ft_format(const char *source, va_list ap, int i, char format)
+int	ft_format(const char *s, va_list ap, int i, int fd)
 {
-	if (format == 'c')
-		return (c_format(&source[i], va_arg(ap, int)));
-	else if (format == 's')
-		return (s_format(&source[i], va_arg(ap, char *)));
-	else if (format == 'i' || format == 'd')
-		return (i_format(&source[i], va_arg(ap, int)));
-	else if (format == 'p')
-		return (p_format(&source[i], va_arg(ap, unsigned long)));
-	else if (format == 'u')
-		return (u_format (&source[i], va_arg(ap, unsigned long)));
-	else if (format == 'x' || format == 'X')
-		return (x_format(&source[i], va_arg(ap, unsigned int)));
-	else if (format == '%')
-		return (c_format(&source[i], format));
+	if (ck_format(&s[i]) == 'c')
+		return (c_format(&s[i], va_arg(ap, int), fd));
+	else if (ck_format(&s[i]) == 's')
+		return (s_format(&s[i], va_arg(ap, char *), fd));
+	else if (ck_format(&s[i]) == 'i' || ck_format(&s[i]) == 'd')
+		return (i_format(&s[i], va_arg(ap, int), fd));
+	else if (ck_format(&s[i]) == 'p')
+		return (p_format(&s[i], va_arg(ap, unsigned long), fd));
+	else if (ck_format(&s[i]) == 'u')
+		return (u_format(&s[i], va_arg(ap, unsigned long), fd));
+	else if (ck_format(&s[i]) == 'x' || ck_format(&s[i]) == 'X')
+		return (x_format(&s[i], va_arg(ap, unsigned int), fd));
+	else if (ck_format(&s[i]) == '%')
+		return (c_format(&s[i], ck_format(&s[i]), fd));
 	else
 		return (-1);
 }
@@ -70,7 +70,7 @@ int	count_move_i(int temp, int *i, const char *s)
 	return (c_count);
 }
 
-int	ft_printf(const char *s, ...)
+int	ft_printf(int fd, const char *s, ...)
 {
 	va_list	ap;
 	int		i;
@@ -83,9 +83,9 @@ int	ft_printf(const char *s, ...)
 	while (s[i])
 	{
 		if (s[i] == '%')
-			temp = ft_format(s, ap, (i + 1), ck_format(&s[i + 1]));
+			temp = ft_format(s, ap, (i + 1), fd);
 		else
-			temp = put_char(s[i]);
+			temp = put_char(s[i], fd);
 		if (temp == -1)
 			return (-1);
 		c_count += temp;

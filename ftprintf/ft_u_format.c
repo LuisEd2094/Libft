@@ -38,7 +38,7 @@ static char	*add_prefix(char *uitoa, t_flags flg, int uitoa_len)
 	return (new);
 }
 
-int	u_format(const char *s,	unsigned int arg)
+int	u_format(const char *s,	unsigned int arg, int fd)
 {
 	char	*uitoa;
 	t_flags	flg;
@@ -60,5 +60,5 @@ int	u_format(const char *s,	unsigned int arg)
 		uitoa = add_spaces(uitoa, flg, (int)ft_strlen(uitoa));
 	if (!uitoa)
 		return (-1);
-	return (put_str(uitoa));
+	return (put_str(uitoa, fd));
 }
