@@ -72,16 +72,16 @@ char	*join_buff(char *buffer, char *reader)
 	return (temp);
 }
 
-char	*read_file(int fd, char *buffer, int bytes_read, int b_size)
+char	*read_file(int fd, char *buffer, int bytes_read)
 {
 	char	*reader;
 
-	reader = ft_calloc(b_size + 1, sizeof(char));
+	reader = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
 	if (!reader)
 		return (ft_free_strs_line(&buffer, &reader));
 	while (bytes_read > 0)
 	{
-		bytes_read = read(fd, reader, b_size);
+		bytes_read = read(fd, reader, BUFFER_SIZE);
 		if (bytes_read == -1)
 			return (ft_free_strs_line(&buffer, &reader));
 		reader[bytes_read] = '\0';
@@ -95,7 +95,7 @@ char	*read_file(int fd, char *buffer, int bytes_read, int b_size)
 	return (buffer);
 }
 
-char	*get_next_line(int fd, int b_size)
+char	*get_next_line(int fd)
 {
 	static char	*buffer[4096];
 	char		*line;
@@ -103,7 +103,7 @@ char	*get_next_line(int fd, int b_size)
 
 	if (fd < 0)
 		return (NULL);
-	if (b_size <= 0)
+	if (BUFFER_SIZE <= 0)
 	{
 		if (buffer[fd])
 			ft_free_strs_line(&buffer[fd], 0);
@@ -114,7 +114,7 @@ char	*get_next_line(int fd, int b_size)
 	if (!buffer[fd])
 		return (ft_free_strs_line(&buffer[fd], 0));
 	bytes_read = 1;
-	buffer[fd] = read_file(fd, buffer[fd], bytes_read, b_size);
+	buffer[fd] = read_file(fd, buffer[fd], bytes_read);
 	if (!buffer[fd])
 		return (NULL);
 	line = parse_line(buffer[fd]);
